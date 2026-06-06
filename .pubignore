@@ -1,0 +1,14 @@
+# Keep the published archive lean: ship the package + example source only.
+# Generated example platform scaffolding is not needed on pub.dev.
+example/android/
+example/ios/
+example/linux/
+example/macos/
+example/windows/
+example/web/
+example/build/
+example/.dart_tool/
+example/.idea/
+example/*.iml
+.idea/
+build/
