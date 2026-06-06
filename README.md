@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="screenshots/cover.png" alt="hud_overlay — Flutter loading overlay. Context-free. Accessible." width="100%">
+</p>
+
 # hud_overlay
 
 [![pub version](https://img.shields.io/pub/v/hud_overlay.svg)](https://pub.dev/packages/hud_overlay)
