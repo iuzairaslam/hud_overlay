@@ -42,7 +42,9 @@ class _ProgressDemoState extends State<ProgressDemo> {
         progress: _progress,
         message: _progress == null ? null : '$pct%',
         theme: Hud.light,
-        child: const DemoStage(child: MockContent(emoji: '📊', accent: T.purple)),
+        child: const DemoStage(
+          child: MockContent(emoji: '📊', accent: T.purple),
+        ),
       ),
       dock: DemoDock(
         code: 'HudOverlay(progress: 0.0 → 1.0)',
@@ -58,8 +60,10 @@ class _ProgressDemoState extends State<ProgressDemo> {
             onPressed: _run,
           ),
           const SizedBox(height: 14),
-          const Hint('Exposes a progressBar semantics role with min/max/value '
-              'for assistive technologies.'),
+          const Hint(
+            'Exposes a progressBar semantics role with min/max/value '
+            'for assistive technologies.',
+          ),
         ],
       ),
     );

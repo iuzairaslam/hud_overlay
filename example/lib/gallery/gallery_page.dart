@@ -17,12 +17,13 @@ class GalleryPage extends StatelessWidget {
           const SliverAppBar.large(
             backgroundColor: T.bg,
             surfaceTintColor: Colors.transparent,
-            title: Text('hud_overlay',
-                style: TextStyle(fontWeight: FontWeight.w800, color: T.ink)),
+            title: Text(
+              'hud_overlay',
+              style: TextStyle(fontWeight: FontWeight.w800, color: T.ink),
+            ),
           ),
           const SliverToBoxAdapter(child: _Intro()),
-          for (final section in kSections)
-            _SectionSliver(section: section),
+          for (final section in kSections) _SectionSliver(section: section),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
       ),
@@ -78,13 +79,16 @@ class _SectionHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title,
-            style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: T.blue,
-                fontFamily: 'monospace',
-                letterSpacing: 0.4)),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: T.blue,
+            fontFamily: 'monospace',
+            letterSpacing: 0.4,
+          ),
+        ),
         const SizedBox(height: 2),
         Text(caption, style: const TextStyle(fontSize: 13, color: T.sub)),
       ],
@@ -103,9 +107,9 @@ class _FeatureTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: feature.builder),
-        ),
+        onTap: () => Navigator.of(
+          context,
+        ).push(MaterialPageRoute<void>(builder: feature.builder)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
           child: Row(
@@ -118,25 +122,34 @@ class _FeatureTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
-                    child: Text(feature.emoji,
-                        style: const TextStyle(fontSize: 22))),
+                  child: Text(
+                    feature.emoji,
+                    style: const TextStyle(fontSize: 22),
+                  ),
+                ),
               ),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(feature.title,
-                        style: const TextStyle(
-                            fontSize: 15.5,
-                            fontWeight: FontWeight.w600,
-                            color: T.ink)),
+                    Text(
+                      feature.title,
+                      style: const TextStyle(
+                        fontSize: 15.5,
+                        fontWeight: FontWeight.w600,
+                        color: T.ink,
+                      ),
+                    ),
                     const SizedBox(height: 2),
-                    Text(feature.code,
-                        style: const TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'monospace',
-                            color: T.sub)),
+                    Text(
+                      feature.code,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'monospace',
+                        color: T.sub,
+                      ),
+                    ),
                   ],
                 ),
               ),

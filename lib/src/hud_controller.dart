@@ -18,10 +18,10 @@ import 'hud_theme.dart';
 class HudController with ChangeNotifier {
   /// Creates a [HudController] with the given [vsync] provider.
   HudController({required TickerProvider vsync})
-      : _animationController = AnimationController(
-          vsync: vsync,
-          duration: const Duration(milliseconds: 200),
-        );
+    : _animationController = AnimationController(
+        vsync: vsync,
+        duration: const Duration(milliseconds: 200),
+      );
 
   final AnimationController _animationController;
   Timer? _autoDismissTimer;
@@ -156,7 +156,10 @@ class HudController with ChangeNotifier {
       }
     }
 
-    _autoDismissTimer = Timer(_resolveAutoDismiss(autoDismiss, message), dismiss);
+    _autoDismissTimer = Timer(
+      _resolveAutoDismiss(autoDismiss, message),
+      dismiss,
+    );
   }
 
   /// Updates the deterministic [progress] value (0.0–1.0) while loading.
@@ -194,7 +197,10 @@ class HudController with ChangeNotifier {
       final elapsed = DateTime.now().difference(shownAt);
       if (elapsed < _theme.minShowDuration) {
         _minShowTimer?.cancel();
-        _minShowTimer = Timer(_theme.minShowDuration - elapsed, _reverseToHidden);
+        _minShowTimer = Timer(
+          _theme.minShowDuration - elapsed,
+          _reverseToHidden,
+        );
         return;
       }
     }

@@ -53,7 +53,9 @@ class MockContent extends StatelessWidget {
               color: accent.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(18),
             ),
-            child: Center(child: Text(emoji, style: const TextStyle(fontSize: 30))),
+            child: Center(
+              child: Text(emoji, style: const TextStyle(fontSize: 30)),
+            ),
           ),
           const SizedBox(height: 16),
           Text(label, style: T.title),
@@ -67,13 +69,13 @@ class MockContent extends StatelessWidget {
   }
 
   Widget _bar({required double width}) => Container(
-        width: width,
-        height: 10,
-        decoration: BoxDecoration(
-          color: const Color(0xFFEDEDF2),
-          borderRadius: BorderRadius.circular(5),
-        ),
-      );
+    width: width,
+    height: 10,
+    decoration: BoxDecoration(
+      color: const Color(0xFFEDEDF2),
+      borderRadius: BorderRadius.circular(5),
+    ),
+  );
 }
 
 /// The bottom "control dock": a rounded white sheet that hosts the code hint,
@@ -99,7 +101,11 @@ class DemoDock extends StatelessWidget {
         color: T.card,
         borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
         boxShadow: [
-          BoxShadow(color: Color(0x14000000), blurRadius: 24, offset: Offset(0, -6)),
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 24,
+            offset: Offset(0, -6),
+          ),
         ],
       ),
       child: SafeArea(
@@ -175,7 +181,9 @@ class RunButton extends StatelessWidget {
                 width: 18,
                 height: 18,
                 child: CircularProgressIndicator(
-                    strokeWidth: 2, color: Colors.white),
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
               )
             : Icon(icon, size: 20),
         label: Text(
@@ -209,8 +217,10 @@ class ToggleRow extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Text(label,
-                style: const TextStyle(fontSize: 15, color: T.ink)),
+            child: Text(
+              label,
+              style: const TextStyle(fontSize: 15, color: T.ink),
+            ),
           ),
           Switch.adaptive(
             value: value,
@@ -339,8 +349,10 @@ class Hint extends StatelessWidget {
         Icon(icon, size: 16, color: T.sub),
         const SizedBox(width: 8),
         Expanded(
-          child: Text(text,
-              style: const TextStyle(fontSize: 12.5, height: 1.4, color: T.sub)),
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 12.5, height: 1.4, color: T.sub),
+          ),
         ),
       ],
     );

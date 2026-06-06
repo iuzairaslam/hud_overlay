@@ -34,16 +34,25 @@ class _CustomIndicatorDemoState extends State<CustomIndicatorDemo> {
           barrierColor: const Color(0x40000000),
           indicator: const PulsingDot(),
           messageStyle: T.hudDarkMessage,
-          containerPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 26),
+          containerPadding: const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 26,
+          ),
           containerDecoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(18)),
             boxShadow: [
-              BoxShadow(color: Color(0x1F000000), blurRadius: 28, offset: Offset(0, 10)),
+              BoxShadow(
+                color: Color(0x1F000000),
+                blurRadius: 28,
+                offset: Offset(0, 10),
+              ),
             ],
           ),
         ),
-        child: const DemoStage(child: MockContent(emoji: '✨', accent: T.pink)),
+        child: const DemoStage(
+          child: MockContent(emoji: '✨', accent: T.pink),
+        ),
       ),
       dock: DemoDock(
         code: 'HudTheme(indicator: PulsingDot())',

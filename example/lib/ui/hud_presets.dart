@@ -13,7 +13,11 @@ abstract class Hud {
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(18)),
       boxShadow: [
-        BoxShadow(color: Color(0x1F000000), blurRadius: 28, offset: Offset(0, 10)),
+        BoxShadow(
+          color: Color(0x1F000000),
+          blurRadius: 28,
+          offset: Offset(0, 10),
+        ),
       ],
     ),
     containerPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 26),
@@ -29,7 +33,11 @@ abstract class Hud {
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(18)),
       boxShadow: [
-        BoxShadow(color: Color(0x29000000), blurRadius: 28, offset: Offset(0, 10)),
+        BoxShadow(
+          color: Color(0x29000000),
+          blurRadius: 28,
+          offset: Offset(0, 10),
+        ),
       ],
     ),
     containerPadding: EdgeInsets.symmetric(horizontal: 26, vertical: 22),

@@ -229,7 +229,8 @@ class _HudOverlayState extends State<HudOverlay>
   }
 
   Widget _buildOverlay(BuildContext context) {
-    final state = widget.currentState ??
+    final state =
+        widget.currentState ??
         (widget.isLoading ? HudState.loading : HudState.hidden);
     return HudOverlayContent(
       animation: _animation,
@@ -369,20 +370,29 @@ class HudOverlayContent extends StatelessWidget {
     Widget indicator;
     switch (state) {
       case HudState.success:
-        indicator = theme.successWidget ??
-            const Icon(Icons.check_circle_outline,
-                color: Colors.greenAccent, size: 48);
+        indicator =
+            theme.successWidget ??
+            const Icon(
+              Icons.check_circle_outline,
+              color: Colors.greenAccent,
+              size: 48,
+            );
       case HudState.error:
-        indicator = theme.errorWidget ??
-            const Icon(Icons.error_outline,
-                color: Colors.redAccent, size: 48);
+        indicator =
+            theme.errorWidget ??
+            const Icon(Icons.error_outline, color: Colors.redAccent, size: 48);
       case HudState.info:
-        indicator = theme.infoWidget ??
-            const Icon(Icons.info_outline,
-                color: Colors.lightBlueAccent, size: 48);
+        indicator =
+            theme.infoWidget ??
+            const Icon(
+              Icons.info_outline,
+              color: Colors.lightBlueAccent,
+              size: 48,
+            );
       case HudState.loading:
       case HudState.hidden:
-        indicator = theme.indicator ??
+        indicator =
+            theme.indicator ??
             CircularProgressIndicator.adaptive(value: progress);
     }
 
@@ -408,7 +418,8 @@ class HudOverlayContent extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             message!,
-            style: theme.messageStyle ??
+            style:
+                theme.messageStyle ??
                 const TextStyle(
                   color: Colors.white,
                   fontSize: 14,
@@ -421,11 +432,9 @@ class HudOverlayContent extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             detail!,
-            style: theme.detailStyle ??
-                const TextStyle(
-                  color: Colors.white70,
-                  fontSize: 12.5,
-                ),
+            style:
+                theme.detailStyle ??
+                const TextStyle(color: Colors.white70, fontSize: 12.5),
             textAlign: TextAlign.center,
           ),
         ],
@@ -446,7 +455,8 @@ class HudOverlayContent extends StatelessWidget {
     final Widget card = theme.containerDecoration != null
         ? Container(
             decoration: theme.containerDecoration,
-            padding: theme.containerPadding ??
+            padding:
+                theme.containerPadding ??
                 const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
             child: column,
           )

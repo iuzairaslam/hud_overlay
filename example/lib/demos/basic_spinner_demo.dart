@@ -39,8 +39,10 @@ class _BasicSpinnerDemoState extends State<BasicSpinnerDemo> {
         children: [
           RunButton(label: 'Show spinner', busy: _busy, onPressed: _run),
           const SizedBox(height: 14),
-          const Hint('The adaptive indicator renders as a Cupertino spinner '
-              'on iOS and a Material spinner on Android.'),
+          const Hint(
+            'The adaptive indicator renders as a Cupertino spinner '
+            'on iOS and a Material spinner on Android.',
+          ),
         ],
       ),
     );

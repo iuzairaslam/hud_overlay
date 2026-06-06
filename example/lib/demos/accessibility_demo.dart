@@ -43,7 +43,9 @@ class _AccessibilityDemoState extends State<AccessibilityDemo> {
         message: 'Loading $pct%',
         semanticsLabel: 'Loading content, $pct percent complete',
         theme: Hud.light,
-        child: const DemoStage(child: MockContent(emoji: '♿', accent: T.green)),
+        child: const DemoStage(
+          child: MockContent(emoji: '♿', accent: T.green),
+        ),
       ),
       dock: DemoDock(
         code: 'semanticsLabel + progressBar role + liveRegion',
@@ -59,8 +61,10 @@ class _AccessibilityDemoState extends State<AccessibilityDemo> {
             onPressed: _run,
           ),
           const SizedBox(height: 14),
-          const Hint('Turn on VoiceOver (iOS) or TalkBack (Android) to hear '
-              'the live progress announcements.'),
+          const Hint(
+            'Turn on VoiceOver (iOS) or TalkBack (Android) to hear '
+            'the live progress announcements.',
+          ),
         ],
       ),
     );

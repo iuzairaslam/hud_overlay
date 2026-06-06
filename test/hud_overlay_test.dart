@@ -50,15 +50,14 @@ class _ControllerHarnessState extends State<_ControllerHarness>
 /// Pumps a [_ControllerHarness] and returns the created [HudController].
 Future<HudController> _mountController(WidgetTester tester) async {
   late HudController c;
-  await tester.pumpWidget(
-    MaterialApp(home: _ControllerHarness((x) => c = x)),
-  );
+  await tester.pumpWidget(MaterialApp(home: _ControllerHarness((x) => c = x)));
   return c;
 }
 
 /// Hosts overlay content inside a [Stack] so [Positioned] children resolve.
-Widget _host(Widget content) =>
-    MaterialApp(home: Scaffold(body: Stack(children: [content])));
+Widget _host(Widget content) => MaterialApp(
+  home: Scaffold(body: Stack(children: [content])),
+);
 
 const _fullAnim = AlwaysStoppedAnimation<double>(1.0);
 
@@ -69,12 +68,7 @@ void main() {
     // 1. Shows overlay when isLoading is true
     testWidgets('shows indicator when isLoading is true', (tester) async {
       await tester.pumpWidget(
-        _wrap(
-          const HudOverlay(
-            isLoading: true,
-            child: Text('Content'),
-          ),
-        ),
+        _wrap(const HudOverlay(isLoading: true, child: Text('Content'))),
       );
       await tester.pump(); // post-frame callback
       await tester.pump(const Duration(milliseconds: 250));
@@ -88,12 +82,14 @@ void main() {
       late StateSetter outerSetState;
 
       await tester.pumpWidget(
-        StatefulBuilder(builder: (_, setState) {
-          outerSetState = setState;
-          return _wrap(
-            HudOverlay(isLoading: loading, child: const Text('Content')),
-          );
-        }),
+        StatefulBuilder(
+          builder: (_, setState) {
+            outerSetState = setState;
+            return _wrap(
+              HudOverlay(isLoading: loading, child: const Text('Content')),
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 250));
@@ -111,11 +107,7 @@ void main() {
 
       await tester.pumpWidget(
         _wrap(
-          const HudOverlay(
-            isLoading: true,
-            progress: 0.5,
-            child: SizedBox(),
-          ),
+          const HudOverlay(isLoading: true, progress: 0.5, child: SizedBox()),
         ),
       );
       await tester.pump();
@@ -124,19 +116,16 @@ void main() {
       // The Semantics widget wrapping the progress indicator has value '50%'.
       expect(
         tester.getSemantics(find.bySemanticsLabel('Loading')),
-        matchesSemantics(
-          label: 'Loading',
-          value: '50%',
-          isLiveRegion: true,
-        ),
+        matchesSemantics(label: 'Loading', value: '50%', isLiveRegion: true),
       );
 
       handle.dispose();
     });
 
     // 6. semanticsLabel is present in semantics tree
-    testWidgets('semanticsLabel appears in tree when overlay is visible',
-        (tester) async {
+    testWidgets('semanticsLabel appears in tree when overlay is visible', (
+      tester,
+    ) async {
       final handle = tester.ensureSemantics();
 
       await tester.pumpWidget(
@@ -156,8 +145,9 @@ void main() {
     });
 
     // 7. dismissible: true — tap outside triggers onDismiss
-    testWidgets('dismissible:true triggers onDismiss on outside tap',
-        (tester) async {
+    testWidgets('dismissible:true triggers onDismiss on outside tap', (
+      tester,
+    ) async {
       bool dismissed = false;
 
       await tester.pumpWidget(
@@ -180,14 +170,13 @@ void main() {
     });
 
     // 8. MediaQuery.disableAnimations=true → instant appear
-    testWidgets('disableAnimations:true shows overlay with zero duration',
-        (tester) async {
+    testWidgets('disableAnimations:true shows overlay with zero duration', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MediaQuery(
           data: const MediaQueryData(disableAnimations: true),
-          child: _wrap(
-            const HudOverlay(isLoading: true, child: SizedBox()),
-          ),
+          child: _wrap(const HudOverlay(isLoading: true, child: SizedBox())),
         ),
       );
       await tester.pump();
@@ -200,8 +189,9 @@ void main() {
   // ── HudService tests ───────────────────────────────────────────────────────
   group('HudService', () {
     // 3. wrap() dismisses overlay after future completes
-    testWidgets('wrap() shows overlay and auto-dismisses after success',
-        (tester) async {
+    testWidgets('wrap() shows overlay and auto-dismisses after success', (
+      tester,
+    ) async {
       await tester.pumpWidget(_wrap(const SizedBox()));
       await tester.pump(); // register HudScope
 
@@ -223,8 +213,9 @@ void main() {
     });
 
     // 4. wrap() calls showError when future throws
-    testWidgets('wrap() transitions to error state when future throws',
-        (tester) async {
+    testWidgets('wrap() transitions to error state when future throws', (
+      tester,
+    ) async {
       await tester.pumpWidget(_wrap(const SizedBox()));
       await tester.pump();
 
@@ -260,8 +251,9 @@ void main() {
 
   // ── HudController tests ──────────────────────────────────────────────────
   group('HudController', () {
-    testWidgets('show() sets loading state with progress and message',
-        (tester) async {
+    testWidgets('show() sets loading state with progress and message', (
+      tester,
+    ) async {
       final c = await _mountController(tester);
 
       c.show(progress: 0.3, message: 'Hi');
@@ -274,8 +266,9 @@ void main() {
       await tester.pump(const Duration(milliseconds: 250));
     });
 
-    testWidgets('updateProgress clamps and only applies while loading',
-        (tester) async {
+    testWidgets('updateProgress clamps and only applies while loading', (
+      tester,
+    ) async {
       final c = await _mountController(tester);
 
       // Ignored before any show().
@@ -356,7 +349,11 @@ void main() {
     });
 
     test('toString includes its fields', () {
-      const s = HudStatus(state: HudState.loading, progress: 0.25, message: 'm');
+      const s = HudStatus(
+        state: HudState.loading,
+        progress: 0.25,
+        message: 'm',
+      );
       expect(s.toString(), contains('loading'));
       expect(s.toString(), contains('0.25'));
       expect(s.toString(), contains('m'));
@@ -387,106 +384,147 @@ void main() {
   // ── HudOverlayContent rendering tests ────────────────────────────────────
   group('HudOverlayContent rendering', () {
     testWidgets('success state shows the default check icon', (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.success,
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.success,
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
     });
 
     testWidgets('error state shows the default error icon', (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.error,
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.error,
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(find.byIcon(Icons.error_outline), findsOneWidget);
     });
 
     testWidgets('message text is rendered below the indicator', (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        message: 'Uploading…',
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            message: 'Uploading…',
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(find.text('Uploading…'), findsOneWidget);
     });
 
-    testWidgets('custom indicator replaces the default spinner',
-        (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(indicator: Text('SPIN')),
-        semanticsLabel: 'Loading',
-      )));
+    testWidgets('custom indicator replaces the default spinner', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: HudTheme(indicator: Text('SPIN')),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(find.text('SPIN'), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsNothing);
     });
 
     testWidgets('blur > 0 inserts a BackdropFilter', (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(blur: 6),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: HudTheme(blur: 6),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(find.byType(BackdropFilter), findsOneWidget);
     });
 
     testWidgets('blur == 0 inserts no BackdropFilter', (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(find.byType(BackdropFilter), findsNothing);
     });
 
-    testWidgets('top position anchors the card with Positioned(top: 80)',
-        (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(position: HudPosition.top),
-        semanticsLabel: 'Loading',
-      )));
+    testWidgets('top position anchors the card with Positioned(top: 80)', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: HudTheme(position: HudPosition.top),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(
         find.byWidgetPredicate((w) => w is Positioned && w.top == 80),
         findsOneWidget,
       );
     });
 
-    testWidgets('bottom position anchors the card with Positioned(bottom: 80)',
-        (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(position: HudPosition.bottom),
-        semanticsLabel: 'Loading',
-      )));
-      expect(
-        find.byWidgetPredicate((w) => w is Positioned && w.bottom == 80),
-        findsOneWidget,
-      );
-    });
+    testWidgets(
+      'bottom position anchors the card with Positioned(bottom: 80)',
+      (tester) async {
+        await tester.pumpWidget(
+          _host(
+            const HudOverlayContent(
+              animation: _fullAnim,
+              state: HudState.loading,
+              theme: HudTheme(position: HudPosition.bottom),
+              semanticsLabel: 'Loading',
+            ),
+          ),
+        );
+        expect(
+          find.byWidgetPredicate((w) => w is Positioned && w.bottom == 80),
+          findsOneWidget,
+        );
+      },
+    );
 
-    testWidgets('animationCurve is applied to the fade opacity',
-        (tester) async {
+    testWidgets('animationCurve is applied to the fade opacity', (
+      tester,
+    ) async {
       const curve = Curves.easeIn;
       const t = 0.5;
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: AlwaysStoppedAnimation<double>(t),
-        state: HudState.loading,
-        theme: HudTheme(animationCurve: curve),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: AlwaysStoppedAnimation<double>(t),
+            state: HudState.loading,
+            theme: HudTheme(animationCurve: curve),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
 
       final opacity = tester.widget<Opacity>(find.byType(Opacity).first);
       expect(opacity.opacity, closeTo(curve.transform(t), 1e-9));
@@ -524,8 +562,9 @@ void main() {
       expect(HudService.isVisible(key: 'b'), isFalse);
     });
 
-    testWidgets('showSuccess without an active overlay is a no-op',
-        (tester) async {
+    testWidgets('showSuccess without an active overlay is a no-op', (
+      tester,
+    ) async {
       await tester.pumpWidget(_wrap(const SizedBox()));
       await tester.pump();
 
@@ -534,8 +573,9 @@ void main() {
       expect(HudService.isVisible(), isFalse);
     });
 
-    testWidgets('trackStream reports progress then dismisses on done',
-        (tester) async {
+    testWidgets('trackStream reports progress then dismisses on done', (
+      tester,
+    ) async {
       await tester.pumpWidget(_wrap(const SizedBox()));
       await tester.pump();
 
@@ -555,8 +595,9 @@ void main() {
       expect(HudService.isVisible(key: 'up'), isFalse);
     });
 
-    testWidgets('show() on an existing key updates the same overlay',
-        (tester) async {
+    testWidgets('show() on an existing key updates the same overlay', (
+      tester,
+    ) async {
       await tester.pumpWidget(_wrap(const SizedBox()));
       await tester.pump();
 
@@ -576,14 +617,16 @@ void main() {
     testWidgets('navigatorObserver dismisses overlays on route push when '
         'autoDismissOnNavigation is enabled', (tester) async {
       final navKey = GlobalKey<NavigatorState>();
-      await tester.pumpWidget(MaterialApp(
-        navigatorKey: navKey,
-        navigatorObservers: [HudService.navigatorObserver],
-        home: const HudScope(
-          autoDismissOnNavigation: true,
-          child: Scaffold(body: SizedBox()),
+      await tester.pumpWidget(
+        MaterialApp(
+          navigatorKey: navKey,
+          navigatorObservers: [HudService.navigatorObserver],
+          home: const HudScope(
+            autoDismissOnNavigation: true,
+            child: Scaffold(body: SizedBox()),
+          ),
         ),
-      ));
+      );
       await tester.pump(); // register scope (post-frame)
 
       HudService.show(message: 'Loading');
@@ -591,26 +634,29 @@ void main() {
       await tester.pump(const Duration(milliseconds: 250));
       expect(HudService.isVisible(), isTrue);
 
-      unawaited(navKey.currentState!.push(
-        MaterialPageRoute<void>(
-          builder: (_) => const Scaffold(body: SizedBox()),
+      unawaited(
+        navKey.currentState!.push(
+          MaterialPageRoute<void>(
+            builder: (_) => const Scaffold(body: SizedBox()),
+          ),
         ),
-      ));
+      );
       await tester.pump(); // didPush fires -> dismissAll
       await tester.pump(const Duration(milliseconds: 300)); // reverse done
       expect(HudService.isVisible(), isFalse);
     });
 
-    testWidgets('navigatorObserver leaves overlays when the flag is off',
-        (tester) async {
+    testWidgets('navigatorObserver leaves overlays when the flag is off', (
+      tester,
+    ) async {
       final navKey = GlobalKey<NavigatorState>();
-      await tester.pumpWidget(MaterialApp(
-        navigatorKey: navKey,
-        navigatorObservers: [HudService.navigatorObserver],
-        home: const HudScope(
-          child: Scaffold(body: SizedBox()),
+      await tester.pumpWidget(
+        MaterialApp(
+          navigatorKey: navKey,
+          navigatorObservers: [HudService.navigatorObserver],
+          home: const HudScope(child: Scaffold(body: SizedBox())),
         ),
-      ));
+      );
       await tester.pump();
 
       HudService.show(message: 'Loading');
@@ -618,11 +664,13 @@ void main() {
       await tester.pump(const Duration(milliseconds: 250));
       expect(HudService.isVisible(), isTrue);
 
-      unawaited(navKey.currentState!.push(
-        MaterialPageRoute<void>(
-          builder: (_) => const Scaffold(body: SizedBox()),
+      unawaited(
+        navKey.currentState!.push(
+          MaterialPageRoute<void>(
+            builder: (_) => const Scaffold(body: SizedBox()),
+          ),
         ),
-      ));
+      );
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
       expect(HudService.isVisible(), isTrue);
@@ -636,25 +684,26 @@ void main() {
 
   // ── SemanticsRole tests ──────────────────────────────────────────────────
   group('Accessibility semantics', () {
-    testWidgets('deterministic progress exposes a progressBar role',
-        (tester) async {
+    testWidgets('deterministic progress exposes a progressBar role', (
+      tester,
+    ) async {
       final handle = tester.ensureSemantics();
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        progress: 0.5,
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            progress: 0.5,
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
 
       final node = tester.getSemantics(find.bySemanticsLabel('Loading'));
       expect(
         node,
-        matchesSemantics(
-          label: 'Loading',
-          value: '50%',
-          isLiveRegion: true,
-        ),
+        matchesSemantics(label: 'Loading', value: '50%', isLiveRegion: true),
       );
       expect(node.role, SemanticsRole.progressBar);
       handle.dispose();
@@ -663,19 +712,25 @@ void main() {
 
   // ── Info state ────────────────────────────────────────────────────────────
   group('Info state', () {
-    testWidgets('HudOverlayContent renders the default info icon',
-        (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.info,
-        theme: HudTheme(),
-        semanticsLabel: 'Info',
-      )));
+    testWidgets('HudOverlayContent renders the default info icon', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.info,
+            theme: HudTheme(),
+            semanticsLabel: 'Info',
+          ),
+        ),
+      );
       expect(find.byIcon(Icons.info_outline), findsOneWidget);
     });
 
-    testWidgets('controller.showInfo transitions then auto-dismisses',
-        (tester) async {
+    testWidgets('controller.showInfo transitions then auto-dismisses', (
+      tester,
+    ) async {
       final c = await _mountController(tester);
       c.showInfo(message: 'FYI', autoDismiss: const Duration(seconds: 1));
       await tester.pump();
@@ -686,8 +741,9 @@ void main() {
       expect(c.status.state, HudState.hidden);
     });
 
-    testWidgets('HudService.showInfo creates an overlay when none is active',
-        (tester) async {
+    testWidgets('HudService.showInfo creates an overlay when none is active', (
+      tester,
+    ) async {
       await tester.pumpWidget(_wrap(const SizedBox()));
       await tester.pump();
 
@@ -706,16 +762,21 @@ void main() {
 
   // ── Detail / secondary label ────────────────────────────────────────────
   group('Detail label', () {
-    testWidgets('renders both message and detail below the indicator',
-        (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-        message: 'Uploading',
-        detail: '3 of 10 files',
-      )));
+    testWidgets('renders both message and detail below the indicator', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+            message: 'Uploading',
+            detail: '3 of 10 files',
+          ),
+        ),
+      );
       expect(find.text('Uploading'), findsOneWidget);
       expect(find.text('3 of 10 files'), findsOneWidget);
     });
@@ -730,17 +791,22 @@ void main() {
 
   // ── Cancel button ─────────────────────────────────────────────────────────
   group('Cancel button', () {
-    testWidgets('shows a labelled button and fires onCancel when tapped',
-        (tester) async {
+    testWidgets('shows a labelled button and fires onCancel when tapped', (
+      tester,
+    ) async {
       var cancelled = false;
-      await tester.pumpWidget(_host(HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: const HudTheme(),
-        semanticsLabel: 'Loading',
-        onCancel: () => cancelled = true,
-        cancelLabel: 'Stop',
-      )));
+      await tester.pumpWidget(
+        _host(
+          HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: const HudTheme(),
+            semanticsLabel: 'Loading',
+            onCancel: () => cancelled = true,
+            cancelLabel: 'Stop',
+          ),
+        ),
+      );
 
       expect(find.widgetWithText(TextButton, 'Stop'), findsOneWidget);
       await tester.tap(find.text('Stop'));
@@ -748,26 +814,35 @@ void main() {
     });
 
     testWidgets('no button is rendered when onCancel is null', (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-      )));
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(find.byType(TextButton), findsNothing);
     });
   });
 
   // ── Interactive mask ──────────────────────────────────────────────────────
   group('Interactive mask', () {
-    testWidgets('non-interactive theme inserts an AbsorbPointer',
-        (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(),
-        semanticsLabel: 'Loading',
-      )));
+    testWidgets('non-interactive theme inserts an AbsorbPointer', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _host(
+          const HudOverlayContent(
+            animation: _fullAnim,
+            state: HudState.loading,
+            theme: HudTheme(),
+            semanticsLabel: 'Loading',
+          ),
+        ),
+      );
       expect(
         find.descendant(
           of: find.byType(HudOverlayContent),
@@ -777,36 +852,43 @@ void main() {
       );
     });
 
-    testWidgets('interactive theme omits AbsorbPointer and ignores the barrier',
-        (tester) async {
-      await tester.pumpWidget(_host(const HudOverlayContent(
-        animation: _fullAnim,
-        state: HudState.loading,
-        theme: HudTheme(interactive: true),
-        semanticsLabel: 'Loading',
-      )));
-      expect(
-        find.descendant(
-          of: find.byType(HudOverlayContent),
-          matching: find.byType(AbsorbPointer),
-        ),
-        findsNothing,
-      );
-      // The barrier is wrapped in IgnorePointer so taps pass through.
-      expect(
-        find.descendant(
-          of: find.byType(HudOverlayContent),
-          matching: find.byType(IgnorePointer),
-        ),
-        findsOneWidget,
-      );
-    });
+    testWidgets(
+      'interactive theme omits AbsorbPointer and ignores the barrier',
+      (tester) async {
+        await tester.pumpWidget(
+          _host(
+            const HudOverlayContent(
+              animation: _fullAnim,
+              state: HudState.loading,
+              theme: HudTheme(interactive: true),
+              semanticsLabel: 'Loading',
+            ),
+          ),
+        );
+        expect(
+          find.descendant(
+            of: find.byType(HudOverlayContent),
+            matching: find.byType(AbsorbPointer),
+          ),
+          findsNothing,
+        );
+        // The barrier is wrapped in IgnorePointer so taps pass through.
+        expect(
+          find.descendant(
+            of: find.byType(HudOverlayContent),
+            matching: find.byType(IgnorePointer),
+          ),
+          findsOneWidget,
+        );
+      },
+    );
   });
 
   // ── Grace period ──────────────────────────────────────────────────────────
   group('Grace period', () {
-    testWidgets('overlay stays invisible until the grace period elapses',
-        (tester) async {
+    testWidgets('overlay stays invisible until the grace period elapses', (
+      tester,
+    ) async {
       final c = await _mountController(tester);
       c.show(theme: const HudTheme(gracePeriod: Duration(milliseconds: 500)));
       await tester.pump();
@@ -826,8 +908,9 @@ void main() {
       await tester.pump(const Duration(milliseconds: 300));
     });
 
-    testWidgets('dismiss during grace cancels without ever showing',
-        (tester) async {
+    testWidgets('dismiss during grace cancels without ever showing', (
+      tester,
+    ) async {
       final c = await _mountController(tester);
       c.show(theme: const HudTheme(gracePeriod: Duration(milliseconds: 500)));
       await tester.pump();
@@ -846,10 +929,13 @@ void main() {
 
   // ── Minimum show duration ─────────────────────────────────────────────────
   group('Minimum show duration', () {
-    testWidgets('a quick dismiss is deferred until the minimum elapses',
-        (tester) async {
+    testWidgets('a quick dismiss is deferred until the minimum elapses', (
+      tester,
+    ) async {
       final c = await _mountController(tester);
-      c.show(theme: const HudTheme(minShowDuration: Duration(milliseconds: 600)));
+      c.show(
+        theme: const HudTheme(minShowDuration: Duration(milliseconds: 600)),
+      );
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 200)); // fade-in
       expect(c.status.state, HudState.loading);
@@ -868,8 +954,9 @@ void main() {
 
   // ── Length-based auto-dismiss ─────────────────────────────────────────────
   group('Length-based auto-dismiss', () {
-    testWidgets('a long message extends the dismiss window beyond 1.5s',
-        (tester) async {
+    testWidgets('a long message extends the dismiss window beyond 1.5s', (
+      tester,
+    ) async {
       final c = await _mountController(tester);
       // 60 chars → 60*60 + 500 = 4100ms.
       c.showSuccess(message: 'x' * 60);

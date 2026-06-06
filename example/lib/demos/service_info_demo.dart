@@ -13,7 +13,9 @@ class ServiceInfoDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'showInfo',
-      stage: const DemoStage(child: MockContent(emoji: 'ℹ️', accent: T.blue)),
+      stage: const DemoStage(
+        child: MockContent(emoji: 'ℹ️', accent: T.blue),
+      ),
       dock: DemoDock(
         code: "HudService.showInfo(message: 'Copied')",
         description:

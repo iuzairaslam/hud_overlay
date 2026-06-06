@@ -13,7 +13,9 @@ class ServiceSuccessDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'showSuccess',
-      stage: const DemoStage(child: MockContent(emoji: '🎉', accent: T.green)),
+      stage: const DemoStage(
+        child: MockContent(emoji: '🎉', accent: T.green),
+      ),
       dock: DemoDock(
         code: "HudService.showSuccess(message: 'Done!')",
         description:
@@ -26,8 +28,9 @@ class ServiceSuccessDemo extends StatelessWidget {
             icon: Icons.check_rounded,
             onPressed: () {
               HudService.show();
-              Future<void>.delayed(const Duration(milliseconds: 500))
-                  .then((_) => HudService.showSuccess(message: 'Done!'));
+              Future<void>.delayed(
+                const Duration(milliseconds: 500),
+              ).then((_) => HudService.showSuccess(message: 'Done!'));
             },
           ),
         ],

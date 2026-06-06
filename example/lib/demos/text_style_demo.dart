@@ -17,11 +17,7 @@ class _TextStyleDemoState extends State<TextStyleDemo> {
   bool _busy = false;
   Color _color = T.pink;
 
-  static final _palette = {
-    T.pink: 'pink',
-    T.blue: 'blue',
-    T.green: 'green',
-  };
+  static final _palette = {T.pink: 'pink', T.blue: 'blue', T.green: 'green'};
 
   Future<void> _run() async {
     setState(() => _busy = true);
@@ -50,18 +46,25 @@ class _TextStyleDemoState extends State<TextStyleDemo> {
             fontSize: 12.5,
             fontStyle: FontStyle.italic,
           ),
-          containerPadding:
-              const EdgeInsets.symmetric(horizontal: 30, vertical: 26),
+          containerPadding: const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 26,
+          ),
           containerDecoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(18)),
             boxShadow: [
               BoxShadow(
-                  color: Color(0x1F000000), blurRadius: 28, offset: Offset(0, 10)),
+                color: Color(0x1F000000),
+                blurRadius: 28,
+                offset: Offset(0, 10),
+              ),
             ],
           ),
         ),
-        child: DemoStage(child: MockContent(emoji: '🎨', accent: _color)),
+        child: DemoStage(
+          child: MockContent(emoji: '🎨', accent: _color),
+        ),
       ),
       dock: DemoDock(
         code: 'HudTheme(messageStyle / detailStyle)',

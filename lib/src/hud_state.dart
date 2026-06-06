@@ -44,7 +44,8 @@ class HudStatus {
   bool get isVisible => state != HudState.hidden;
 
   @override
-  String toString() => 'HudStatus(state: $state, progress: $progress, '
+  String toString() =>
+      'HudStatus(state: $state, progress: $progress, '
       'message: $message, detail: $detail)';
 
   @override

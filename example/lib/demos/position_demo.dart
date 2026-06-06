@@ -32,7 +32,9 @@ class _PositionDemoState extends State<PositionDemo> {
         isLoading: _busy,
         message: 'Loading',
         theme: Hud.light.copyWith(position: _pos),
-        child: const DemoStage(child: MockContent(emoji: '🧭', accent: T.purple)),
+        child: const DemoStage(
+          child: MockContent(emoji: '🧭', accent: T.purple),
+        ),
       ),
       dock: DemoDock(
         code: 'HudTheme(position: HudPosition.${_pos.name})',

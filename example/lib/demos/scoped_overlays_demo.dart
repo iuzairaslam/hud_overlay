@@ -124,11 +124,14 @@ class _Region extends StatelessWidget {
                     children: [
                       Text(emoji, style: const TextStyle(fontSize: 34)),
                       const SizedBox(height: 8),
-                      Text(label,
-                          style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: T.ink)),
+                      Text(
+                        label,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: T.ink,
+                        ),
+                      ),
                     ],
                   ),
                 ),

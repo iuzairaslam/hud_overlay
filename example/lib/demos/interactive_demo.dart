@@ -28,15 +28,21 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
   Widget build(BuildContext context) {
     final theme = HudTheme(
       interactive: _interactive,
-      barrierColor:
-          _interactive ? Colors.transparent : const Color(0x55000000),
+      barrierColor: _interactive ? Colors.transparent : const Color(0x55000000),
       messageStyle: T.hudDarkMessage,
-      containerPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+      containerPadding: const EdgeInsets.symmetric(
+        horizontal: 24,
+        vertical: 20,
+      ),
       containerDecoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(18)),
         boxShadow: [
-          BoxShadow(color: Color(0x29000000), blurRadius: 28, offset: Offset(0, 10)),
+          BoxShadow(
+            color: Color(0x29000000),
+            blurRadius: 28,
+            offset: Offset(0, 10),
+          ),
         ],
       ),
     );
@@ -53,16 +59,23 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
             children: [
               const Text('Tap count', style: T.body),
               const SizedBox(height: 8),
-              Text('$_count',
-                  style: const TextStyle(
-                      fontSize: 56, fontWeight: FontWeight.w800, color: T.ink)),
+              Text(
+                '$_count',
+                style: const TextStyle(
+                  fontSize: 56,
+                  fontWeight: FontWeight.w800,
+                  color: T.ink,
+                ),
+              ),
               const SizedBox(height: 16),
               FilledButton(
                 onPressed: () => setState(() => _count++),
                 style: FilledButton.styleFrom(
                   backgroundColor: T.green,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 28,
+                    vertical: 14,
+                  ),
                 ),
                 child: const Text('Tap me'),
               ),

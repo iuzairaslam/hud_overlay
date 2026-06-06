@@ -16,15 +16,18 @@ class MinShowDemo extends StatelessWidget {
   void _task() {
     HudService.show(message: 'Saving…', theme: _theme);
     // Finishes almost instantly — but stays up for the minimum.
-    Future<void>.delayed(const Duration(milliseconds: 50))
-        .then((_) => HudService.dismiss());
+    Future<void>.delayed(
+      const Duration(milliseconds: 50),
+    ).then((_) => HudService.dismiss());
   }
 
   @override
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Minimum show time',
-      stage: const DemoStage(child: MockContent(emoji: '🫧', accent: T.teal)),
+      stage: const DemoStage(
+        child: MockContent(emoji: '🫧', accent: T.teal),
+      ),
       dock: DemoDock(
         code: 'HudTheme(minShowDuration: 1s)',
         description:

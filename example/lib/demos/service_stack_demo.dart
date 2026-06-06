@@ -13,7 +13,9 @@ class ServiceStackDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Stacked overlays',
-      stage: const DemoStage(child: MockContent(emoji: '🧱', accent: T.orange)),
+      stage: const DemoStage(
+        child: MockContent(emoji: '🧱', accent: T.orange),
+      ),
       dock: DemoDock(
         code: "HudService.show(key: '…')  •  dismissAll()",
         description:

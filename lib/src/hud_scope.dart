@@ -85,8 +85,9 @@ class _HudScopeState extends State<HudScope> {
       HudService.instance.updateDefaultTheme(widget.defaultTheme);
     }
     if (oldWidget.autoDismissOnNavigation != widget.autoDismissOnNavigation) {
-      HudService.instance
-          .setAutoDismissOnNavigation(widget.autoDismissOnNavigation);
+      HudService.instance.setAutoDismissOnNavigation(
+        widget.autoDismissOnNavigation,
+      );
     }
   }
 

@@ -16,8 +16,7 @@ class HapticsDemo extends StatefulWidget {
 class _HapticsDemoState extends State<HapticsDemo> {
   bool _haptics = true;
 
-  HudTheme get _theme =>
-      HudTheme.dark().copyWith(enableHaptics: _haptics);
+  HudTheme get _theme => HudTheme.dark().copyWith(enableHaptics: _haptics);
 
   void _run(bool success) {
     HudService.show(theme: _theme);
@@ -34,7 +33,9 @@ class _HapticsDemoState extends State<HapticsDemo> {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Haptic feedback',
-      stage: const DemoStage(child: MockContent(emoji: '📳', accent: T.orange)),
+      stage: const DemoStage(
+        child: MockContent(emoji: '📳', accent: T.orange),
+      ),
       dock: DemoDock(
         code: 'HudTheme(enableHaptics: true)',
         description:

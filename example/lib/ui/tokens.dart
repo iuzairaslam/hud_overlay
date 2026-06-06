@@ -30,11 +30,7 @@ abstract class T {
     color: ink,
   );
 
-  static const body = TextStyle(
-    fontSize: 14,
-    height: 1.4,
-    color: sub,
-  );
+  static const body = TextStyle(fontSize: 14, height: 1.4, color: sub);
 
   static const code = TextStyle(
     fontSize: 12,
@@ -44,12 +40,8 @@ abstract class T {
   );
 
   static List<BoxShadow> get shadow => const [
-        BoxShadow(
-          color: Color(0x14000000),
-          blurRadius: 18,
-          offset: Offset(0, 6),
-        ),
-      ];
+    BoxShadow(color: Color(0x14000000), blurRadius: 18, offset: Offset(0, 6)),
+  ];
 
   /// Dark loader text used on light HUD cards in the demos.
   static const hudDarkMessage = TextStyle(
@@ -57,8 +49,5 @@ abstract class T {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
-  static const hudDarkDetail = TextStyle(
-    color: sub,
-    fontSize: 12.5,
-  );
+  static const hudDarkDetail = TextStyle(color: sub, fontSize: 12.5);
 }

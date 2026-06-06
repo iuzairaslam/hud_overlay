@@ -19,10 +19,8 @@ class App extends StatelessWidget {
       ),
       // HudScope hosts the global overlay used by HudService. A dark preset is
       // the default look for context-free service calls in this demo.
-      builder: (context, child) => HudScope(
-        defaultTheme: HudTheme.dark(),
-        child: child!,
-      ),
+      builder: (context, child) =>
+          HudScope(defaultTheme: HudTheme.dark(), child: child!),
       home: const GalleryPage(),
     );
   }

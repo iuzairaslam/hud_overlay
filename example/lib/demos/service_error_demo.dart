@@ -13,7 +13,9 @@ class ServiceErrorDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'showError',
-      stage: const DemoStage(child: MockContent(emoji: '⚠️', accent: T.red)),
+      stage: const DemoStage(
+        child: MockContent(emoji: '⚠️', accent: T.red),
+      ),
       dock: DemoDock(
         code: "HudService.showError(message: 'Failed')",
         description:
@@ -26,9 +28,9 @@ class ServiceErrorDemo extends StatelessWidget {
             icon: Icons.priority_high_rounded,
             onPressed: () {
               HudService.show();
-              Future<void>.delayed(const Duration(milliseconds: 500))
-                  .then((_) =>
-                      HudService.showError(message: 'Something went wrong'));
+              Future<void>.delayed(const Duration(milliseconds: 500)).then(
+                (_) => HudService.showError(message: 'Something went wrong'),
+              );
             },
           ),
         ],

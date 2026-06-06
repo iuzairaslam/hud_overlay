@@ -29,9 +29,14 @@ class DemoScaffold extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: true,
-        title: Text(title,
-            style: const TextStyle(
-                fontSize: 17, fontWeight: FontWeight.w700, color: T.ink)),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w700,
+            color: T.ink,
+          ),
+        ),
         iconTheme: const IconThemeData(color: T.blue),
       ),
       body: Column(

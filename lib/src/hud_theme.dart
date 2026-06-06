@@ -52,46 +52,40 @@ class HudTheme {
   /// HudTheme.light().copyWith(blur: 8);
   /// ```
   factory HudTheme.light() => HudTheme(
-        barrierColor: const Color(0x33000000),
-        containerDecoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x1F000000),
-              blurRadius: 24,
-              offset: Offset(0, 8),
-            ),
-          ],
+    barrierColor: const Color(0x33000000),
+    containerDecoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(14),
+      boxShadow: const [
+        BoxShadow(
+          color: Color(0x1F000000),
+          blurRadius: 24,
+          offset: Offset(0, 8),
         ),
-        messageStyle: const TextStyle(
-          color: Color(0xFF1C1C1E),
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        detailStyle: const TextStyle(
-          color: Color(0xFF8E8E93),
-          fontSize: 12.5,
-        ),
-      );
+      ],
+    ),
+    messageStyle: const TextStyle(
+      color: Color(0xFF1C1C1E),
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+    ),
+    detailStyle: const TextStyle(color: Color(0xFF8E8E93), fontSize: 12.5),
+  );
 
   /// A dark preset: charcoal rounded card on a dim scrim with white text.
   factory HudTheme.dark() => HudTheme(
-        barrierColor: const Color(0x66000000),
-        containerDecoration: BoxDecoration(
-          color: const Color(0xE5202024),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        messageStyle: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        detailStyle: const TextStyle(
-          color: Color(0xB3FFFFFF),
-          fontSize: 12.5,
-        ),
-      );
+    barrierColor: const Color(0x66000000),
+    containerDecoration: BoxDecoration(
+      color: const Color(0xE5202024),
+      borderRadius: BorderRadius.circular(14),
+    ),
+    messageStyle: const TextStyle(
+      color: Colors.white,
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+    ),
+    detailStyle: const TextStyle(color: Color(0xB3FFFFFF), fontSize: 12.5),
+  );
 
   /// The colour drawn behind the indicator card.
   ///
@@ -257,23 +251,23 @@ class HudTheme {
 
   @override
   int get hashCode => Object.hashAll([
-        barrierColor,
-        blur,
-        indicator,
-        successWidget,
-        errorWidget,
-        infoWidget,
-        messageStyle,
-        detailStyle,
-        animationDuration,
-        animationCurve,
-        position,
-        containerDecoration,
-        containerPadding,
-        enableHaptics,
-        gracePeriod,
-        minShowDuration,
-        interactive,
-        cancelButtonStyle,
-      ]);
+    barrierColor,
+    blur,
+    indicator,
+    successWidget,
+    errorWidget,
+    infoWidget,
+    messageStyle,
+    detailStyle,
+    animationDuration,
+    animationCurve,
+    position,
+    containerDecoration,
+    containerPadding,
+    enableHaptics,
+    gracePeriod,
+    minShowDuration,
+    interactive,
+    cancelButtonStyle,
+  ]);
 }

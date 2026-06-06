@@ -216,8 +216,7 @@ class HudService {
   /// Returns `true` if the overlay identified by [key] is currently visible.
   static bool isVisible({String? key}) {
     final record = instance._overlays[key ?? _unnamedKey];
-    return record != null &&
-        record.controller.status.state != HudState.hidden;
+    return record != null && record.controller.status.state != HudState.hidden;
   }
 
   /// Shows an overlay for the lifetime of [future].
@@ -411,10 +410,7 @@ class _SingleTickerVsync implements TickerProvider {
 
 /// Bridges [HudController] to [HudOverlayContent] for the service-path overlay.
 class _ServiceOverlayWidget extends StatefulWidget {
-  const _ServiceOverlayWidget({
-    required this.record,
-    required this.onHidden,
-  });
+  const _ServiceOverlayWidget({required this.record, required this.onHidden});
 
   final _OverlayRecord record;
   final VoidCallback onHidden;

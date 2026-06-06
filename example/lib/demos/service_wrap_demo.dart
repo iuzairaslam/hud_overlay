@@ -19,8 +19,7 @@ class _ServiceWrapDemoState extends State<ServiceWrapDemo> {
   bool _shouldFail = false;
 
   Future<void> _run() async {
-    final future = Future<void>.delayed(const Duration(milliseconds: 1200),
-        () {
+    final future = Future<void>.delayed(const Duration(milliseconds: 1200), () {
       if (_shouldFail) throw 'Network error';
     });
     await HudService.wrap<void>(

@@ -23,13 +23,16 @@ class ServiceShowDemo extends StatelessWidget {
             label: 'show() for 2s',
             onPressed: () {
               HudService.show(message: 'Working…');
-              Future<void>.delayed(const Duration(seconds: 2))
-                  .then((_) => HudService.dismiss());
+              Future<void>.delayed(
+                const Duration(seconds: 2),
+              ).then((_) => HudService.dismiss());
             },
           ),
           const SizedBox(height: 14),
-          const Hint('No widget wrapping required — HudScope wires up the '
-              'global overlay once at app startup.'),
+          const Hint(
+            'No widget wrapping required — HudScope wires up the '
+            'global overlay once at app startup.',
+          ),
         ],
       ),
     );

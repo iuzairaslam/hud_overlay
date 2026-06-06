@@ -20,7 +20,9 @@ class ServiceStreamDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'trackStream',
-      stage: const DemoStage(child: MockContent(emoji: '📡', accent: T.purple)),
+      stage: const DemoStage(
+        child: MockContent(emoji: '📡', accent: T.purple),
+      ),
       dock: DemoDock(
         code: 'HudService.trackStream(progress\$)',
         description:

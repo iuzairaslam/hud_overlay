@@ -32,7 +32,9 @@ class _DetailDemoState extends State<DetailDemo> {
         message: 'Syncing library',
         detail: 'This can take a moment…',
         theme: Hud.light,
-        child: const DemoStage(child: MockContent(emoji: '📚', accent: T.teal)),
+        child: const DemoStage(
+          child: MockContent(emoji: '📚', accent: T.teal),
+        ),
       ),
       dock: DemoDock(
         code: "HudOverlay(detail: 'This can take a moment…')",

@@ -15,15 +15,18 @@ class GracePeriodDemo extends StatelessWidget {
 
   void _task(int ms) {
     HudService.show(message: 'Loading…', theme: _theme);
-    Future<void>.delayed(Duration(milliseconds: ms))
-        .then((_) => HudService.dismiss());
+    Future<void>.delayed(
+      Duration(milliseconds: ms),
+    ).then((_) => HudService.dismiss());
   }
 
   @override
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Grace period',
-      stage: const DemoStage(child: MockContent(emoji: '⏱️', accent: T.blue)),
+      stage: const DemoStage(
+        child: MockContent(emoji: '⏱️', accent: T.blue),
+      ),
       dock: DemoDock(
         code: 'HudTheme(gracePeriod: 500ms)',
         description:

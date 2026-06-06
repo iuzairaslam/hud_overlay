@@ -27,7 +27,9 @@ class _DismissibleDemoState extends State<DismissibleDemo> {
         dismissible: true,
         onDismiss: () => setState(() => _busy = false),
         theme: Hud.light,
-        child: const DemoStage(child: MockContent(emoji: '👆', accent: T.orange)),
+        child: const DemoStage(
+          child: MockContent(emoji: '👆', accent: T.orange),
+        ),
       ),
       dock: DemoDock(
         code: 'HudOverlay(dismissible: true)',
