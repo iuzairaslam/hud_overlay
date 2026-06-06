@@ -56,7 +56,28 @@ Each example below is its own screen in the [example app](example/).
       <b>Cancel button</b><br>
       <code>HudOverlay(onCancel: …)</code>
     </td>
-    <td width="33%"></td>
+    <td align="center" width="33%">
+      <img src="screenshots/blur.png" width="200" alt="Backdrop blur"><br>
+      <b>Backdrop blur</b><br>
+      <code>HudTheme(blur: …)</code>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <img src="screenshots/service_info.png" width="200" alt="Info toast"><br>
+      <b>Info toast</b><br>
+      <code>HudService.showInfo(…)</code>
+    </td>
+    <td align="center" width="33%">
+      <img src="screenshots/service_error.png" width="200" alt="Error state"><br>
+      <b>Error state</b><br>
+      <code>HudService.showError(…)</code>
+    </td>
+    <td align="center" width="33%">
+      <img src="screenshots/custom_state_widgets.png" width="200" alt="Custom state widgets"><br>
+      <b>Custom state widgets</b><br>
+      <code>HudTheme(successWidget: …)</code>
+    </td>
   </tr>
 </table>
 
