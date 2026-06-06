@@ -4,44 +4,58 @@
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![platform](https://img.shields.io/badge/platform-flutter-02569B)](https://flutter.dev)
 
-A context-optional, accessibility-first loading overlay for Flutter.
+A simple loading spinner for your Flutter app that you can show from anywhere.
 
-Show, update, and dismiss loading state from anywhere — widgets, BLoC, Riverpod,
-or a plain Dart service — with no `BuildContext` and no boilerplate.
+Whenever your app is busy — saving, loading, uploading — you usually want to
+show a spinner and gently block the screen until it's done. `hud_overlay` makes
+that a one-liner, and you don't need to pass `context` around to do it.
 
-## Features
+## Why you'll like it
 
-- **Context-free** — drive overlays from any layer via the static `HudService`.
-- **Native `Overlay`** — no root `Stack`, no global wrapper widget required.
-- **Stateful** — loading, deterministic progress, success, error, and info.
-- **Accessible** — screen-reader announcements, live regions, and a
-  `progressBar` semantics role.
-- **Customizable** — `HudTheme` with light/dark presets, blur, position,
-  custom indicators, and full text styling.
-- **Pure Dart** — zero non-SDK dependencies; runs on every Flutter platform.
+- **Show it from anywhere.** Call one line from a button, a service, BLoC, or
+  Riverpod — no `BuildContext` required.
+- **Tell the user what's happening.** Add a message, show real progress, or
+  flip to a ✓ success or ✗ error when you're done.
+- **Looks good out of the box.** Sensible light and dark styles, with the
+  freedom to customize everything.
+- **Works for everyone.** Built-in screen-reader support so visually impaired
+  users aren't left guessing.
+- **No extra baggage.** Pure Dart, no other dependencies, runs on every
+  platform Flutter supports.
 
-## Install
+## Get started
+
+### 1. Add it
 
 ```yaml
 dependencies:
   hud_overlay: ^0.1.0
 ```
 
-## Usage
+Then run `flutter pub get`.
 
-### Widget
+### 2. Pick how you want to use it
+
+There are two ways. Use whichever feels easier — you can mix both.
+
+#### Option A — wrap a widget
+
+Great when the loading belongs to one screen or form. Just wrap it and flip a
+boolean:
 
 ```dart
 HudOverlay(
-  isLoading: _isLoading,
-  message: 'Loading…',
+  isLoading: _isSaving,      // true = show the spinner
+  message: 'Saving…',
   child: MyForm(),
 )
 ```
 
-### Service (context-free)
+#### Option B — call it from anywhere
 
-Register `HudScope` once:
+Great for app-wide loading from buttons, services, BLoC, or Riverpod.
+
+First, turn it on once when your app starts:
 
 ```dart
 MaterialApp(
@@ -50,51 +64,80 @@ MaterialApp(
 )
 ```
 
-Then call from anywhere:
+Now show and hide it from anywhere — no `context` needed:
 
 ```dart
 HudService.show(message: 'Saving…');
-await save();
-HudService.showSuccess(message: 'Saved!');
+await saveToServer();
+HudService.showSuccess(message: 'Saved!');   // shows a ✓ and disappears
 ```
 
-### Wrap a Future
+## Handy things you can do
+
+**Run a task and show the result automatically.** Spinner while it runs, ✓ if it
+works, ✗ if it fails:
 
 ```dart
 await HudService.wrap(
   api.save(),
   message: 'Saving…',
   successMessage: 'Saved!',
-  errorMessage: 'Failed',
+  errorMessage: 'Something went wrong',
 );
 ```
 
-## Theming
+**Show real progress** (like a download) from 0% to 100%:
+
+```dart
+HudService.show(progress: 0.42, message: '42%');
+```
+
+**Quick messages:**
+
+```dart
+HudService.showSuccess(message: 'Done!');
+HudService.showError(message: 'No internet connection');
+HudService.showInfo(message: 'Copied to clipboard');
+```
+
+**Hide it** whenever you need to:
+
+```dart
+HudService.dismiss();
+```
+
+## Make it match your app
+
+Want a different look? Pass a `HudTheme`. Start from a ready-made light or dark
+style and tweak only what you want:
 
 ```dart
 HudOverlay(
   isLoading: _isLoading,
-  theme: HudTheme.dark().copyWith(blur: 8),
+  theme: HudTheme.dark().copyWith(blur: 8), // dark style with a blurred background
   child: child,
 )
 ```
 
-`HudTheme` configures the barrier, blur, indicator, card decoration, position,
-text styles, animation, haptics, grace period, and minimum show duration.
-`HudTheme.light()` and `HudTheme.dark()` provide ready-made presets.
+With `HudTheme` you can change the background dimming, blur, spinner, card
+shape, position (top/center/bottom), text styles, and more. You can even add a
+**Cancel** button, **haptic feedback**, or let people keep tapping the screen
+while it loads.
 
-## API
+## The pieces
 
-| Type | Purpose |
+| Name | What it's for |
 |---|---|
-| `HudOverlay` | Widget that overlays a loading state on its `child`. |
-| `HudService` | Static API: `show`, `showSuccess`, `showError`, `showInfo`, `dismiss`, `dismissAll`, `wrap`, `trackStream`. |
-| `HudScope` | Registers the global overlay used by `HudService`. |
-| `HudTheme` | Visual and behavioral configuration. |
-| `HudController` | Low-level controller for advanced cases. |
+| `HudOverlay` | A widget that shows a loading spinner over its child. |
+| `HudService` | Show/hide loading from anywhere (`show`, `showSuccess`, `showError`, `showInfo`, `dismiss`, `wrap`, …). |
+| `HudScope` | Set up once so `HudService` works app-wide. |
+| `HudTheme` | Controls how everything looks and behaves. |
 
-See the [example](example/) app for a focused, runnable demo of every feature.
+## See it in action
+
+The [example app](example/) has a dedicated, tap-to-try screen for every
+feature — the easiest way to see what's possible.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) — free to use in personal and commercial projects.
