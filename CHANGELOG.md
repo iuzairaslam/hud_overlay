@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- Fix `homepage`, `repository`, and `issue_tracker` URLs in `pubspec.yaml`.
+
 ## 0.1.0
 
 Initial release.

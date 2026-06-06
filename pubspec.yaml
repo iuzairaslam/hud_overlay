@@ -3,10 +3,10 @@ description: >-
   A state-management-agnostic, accessibility-first, context-optional Flutter
   loading overlay. Works in widget trees, BLoC, Riverpod, and service layers
   with zero boilerplate.
-version: 0.1.0
-homepage: https://github.com/uzairaslam/hud_overlay
-repository: https://github.com/uzairaslam/hud_overlay
-issue_tracker: https://github.com/uzairaslam/hud_overlay/issues
+version: 0.1.1
+homepage: https://github.com/iuzairaslam/hud_overlay
+repository: https://github.com/iuzairaslam/hud_overlay
+issue_tracker: https://github.com/iuzairaslam/hud_overlay/issues
 
 environment:
   sdk: ">=3.8.0 <4.0.0"
