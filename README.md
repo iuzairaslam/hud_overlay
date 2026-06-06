@@ -1,12 +1,12 @@
-<p align="center">
-  <img src="screenshots/cover.png" alt="hud_overlay — Flutter loading overlay. Context-free. Accessible." width="100%">
-</p>
-
 # hud_overlay
 
 [![pub version](https://img.shields.io/pub/v/hud_overlay.svg)](https://pub.dev/packages/hud_overlay)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![platform](https://img.shields.io/badge/platform-flutter-02569B)](https://flutter.dev)
+
+<p align="center">
+  <img src="screenshots/cover.png" alt="hud_overlay — Flutter loading overlay. Context-free. Accessible." width="100%">
+</p>
 
 A simple loading spinner for your Flutter app that you can show from anywhere.
 
