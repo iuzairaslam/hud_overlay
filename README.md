@@ -23,6 +23,43 @@ that a one-liner, and you don't need to pass `context` around to do it.
 - **No extra baggage.** Pure Dart, no other dependencies, runs on every
   platform Flutter supports.
 
+## What it looks like
+
+Each example below is its own screen in the [example app](example/).
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="screenshots/basic_spinner.png" width="200" alt="Basic spinner"><br>
+      <b>Basic spinner</b><br>
+      <code>HudOverlay(isLoading: true)</code>
+    </td>
+    <td align="center" width="33%">
+      <img src="screenshots/message.png" width="200" alt="Message label"><br>
+      <b>Message label</b><br>
+      <code>HudOverlay(message: '…')</code>
+    </td>
+    <td align="center" width="33%">
+      <img src="screenshots/progress.png" width="200" alt="Determinate progress"><br>
+      <b>Determinate progress</b><br>
+      <code>HudOverlay(progress: 0.0–1.0)</code>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <img src="screenshots/detail.png" width="200" alt="Detail line"><br>
+      <b>Detail line</b><br>
+      <code>HudOverlay(detail: '…')</code>
+    </td>
+    <td align="center" width="33%">
+      <img src="screenshots/cancel_button.png" width="200" alt="Cancel button"><br>
+      <b>Cancel button</b><br>
+      <code>HudOverlay(onCancel: …)</code>
+    </td>
+    <td width="33%"></td>
+  </tr>
+</table>
+
 ## Get started
 
 ### 1. Add it
